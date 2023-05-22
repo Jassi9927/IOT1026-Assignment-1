@@ -1,13 +1,9 @@
-﻿namespace Assignment
+namespace Assignment
 {
+
     public static class ArrayReplicator
     {
-        /// <summary>
-        /// Replicates (deep copies) the incoming array
-        /// </summary>
-        /// <param name="original">The array to be replicated</param>
-        /// <returns>A deep copy of the original array</returns>
-        ///jaspreet Singh A00274134
+        
         public static int[] ReplicateArray(int[] original)
         {
             int size = original.Length;
@@ -20,27 +16,16 @@
             return copyArray;
         }
 
-        /// <summary>
-        /// Asks the user for a number. Will crash if the user input is not convertible to an int (throw exception?)
-        /// </summary>
-        /// <param name="text">Text to prompt the user</param>
-        /// <returns>The user input as an integer</returns>
+        
         public static int AskForNumber(string text)
         {
             Console.Write(text);
-            string userInput = Console.ReadLine(); // Needs work -> try/catch + loop or Int.TryParse + loop
+            string userInput = Console.ReadLine()!; // Needs work -> try/catch + loop or Int.TryParse + loop
             int number = Convert.ToInt32(userInput);
             return number;
         }
 
-        /// <summary>
-        /// Asks the user for a number within a certain range [min, max]. If the number is not in the range, re-prompt the user for a new number.
-        /// Will crash if the user input is not convertible to an int (throw exception?)
-        /// </summary>
-        /// <param name="text">Text to prompt the user</param>
-        /// <param name="min">Smallest permissible value</param>
-        /// <param name="max">Largest permissible value</param>
-        /// <returns>The user input as an integer</returns>
+        
         public static int AskForNumber(string text, int min, int max)
         {
             int userInput = AskForNumber(text);
