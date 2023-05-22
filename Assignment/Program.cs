@@ -7,6 +7,7 @@
         /// </summary>
         /// <param name="original">The array to be replicated</param>
         /// <returns>A deep copy of the original array</returns>
+        ///jaspreet Singh A00274134
         public static int[] ReplicateArray(int[] original)
         {
             int size = original.Length;
