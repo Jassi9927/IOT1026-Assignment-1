@@ -1,14 +1,13 @@
+using System;
+
 namespace Assignment
 {
-
     public static class ArrayReplicator
     {
-        
         public static int[] ReplicateArray(int[] original)
         {
             int size = original.Length;
             int[] copyArray = new int[size];
-            // LINQ -> map
             for (int i = 0; i < size; ++i)
             {
                 copyArray[i] = original[i];
@@ -16,23 +15,27 @@ namespace Assignment
             return copyArray;
         }
 
-        
         public static int AskForNumber(string text)
         {
             Console.Write(text);
-            string userInput = Console.ReadLine()!; // Needs work -> try/catch + loop or Int.TryParse + loop
-            int number = Convert.ToInt32(userInput);
+            string userInput = Console.ReadLine();
+            int number;
+            while (!int.TryParse(userInput, out number))
+            {
+                Console.WriteLine("Invalid input. Please enter a valid number.");
+                Console.Write(text);
+                userInput = Console.ReadLine();
+            }
             return number;
         }
 
-        
         public static int AskForNumber(string text, int min, int max)
         {
             int userInput = AskForNumber(text);
-            // While the user input is outside the expected range
             while (userInput < min || userInput > max)
             {
-                userInput = AskForNumber("Your previous input is not valid, try again.");
+                Console.WriteLine($"Input must be between {min} and {max}. Please try again.");
+                userInput = AskForNumber(text);
             }
             return userInput;
         }
@@ -49,16 +52,17 @@ namespace Assignment
             int size = ArrayReplicator.AskForNumber("Enter the array size: ", Min, Max);
             int[] original = new int[size];
 
-            // Fill the original array with user specified integers
             for (int item = 0; item < size; ++item)
             {
                 original[item] = ArrayReplicator.AskForNumber("Enter a number: ");
             }
 
             int[] copy = ArrayReplicator.ReplicateArray(original);
-            // Verify original and replicated array are the same
+
             for (int index = 0; index < size; ++index)
+            {
                 Console.WriteLine($"Original {original[index],-PrintOffset}  {copy[index],4} Copy");
+            }
         }
     }
 }
